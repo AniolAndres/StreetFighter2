@@ -25,6 +25,7 @@ public:
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
+	int playerMovement = 1;
 };
 
 #endif // __MODULERENDER_H__

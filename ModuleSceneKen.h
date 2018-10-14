@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 
+
 struct SDL_Texture;
 
 class ModuleSceneKen : public Module

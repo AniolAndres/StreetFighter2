@@ -50,19 +50,30 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()
 {
 	// debug camera
-	int speed = 1;
+	int speed = 1.2;
+	// 1 idle, 2 forward, 3 backwards
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	{
 		App->renderer->camera.y += speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	}
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
 		App->renderer->camera.y -= speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	}
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
 		App->renderer->camera.x += speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		App->renderer->playerMovement = 3;
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	{
 		App->renderer->camera.x -= speed;
+		App->renderer->playerMovement = 2;
+	}
+	else
+		App->renderer->playerMovement = 1;
+	
 
 	return UPDATE_CONTINUE;
 }

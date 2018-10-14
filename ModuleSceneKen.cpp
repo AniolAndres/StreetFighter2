@@ -61,12 +61,11 @@ bool ModuleSceneKen::Start()
 
 	// TODO 7: Enable the player module
 
-	
+	App->player->Enable();
 
 	// TODO 0: trigger background music
 
 	App->audio->LoadFx("ken.ogg");
-	App->audio->LoadFx("honda.ogg");
 	App->audio->PlayFx(0, 0);
 	
 	return true;
