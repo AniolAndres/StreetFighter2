@@ -3,6 +3,8 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleSceneKen.h"
+#include "ModuleSceneHonda.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender()
@@ -74,6 +76,10 @@ update_status ModuleRender::Update()
 	else
 		App->renderer->playerMovement = 1;
 	
+	if (App->input->GetKey(SDL_SCANCODE_SPACE))
+	{
+		App->renderer->swapScene = true;
+	}
 
 	return UPDATE_CONTINUE;
 }

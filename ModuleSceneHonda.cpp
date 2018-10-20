@@ -13,6 +13,70 @@
 
 ModuleSceneHonda::ModuleSceneHonda(bool start_enabled) : Module(start_enabled)
 {
+	// ground
+
+	ground.x = 4;
+	ground.y = 373;
+	ground.w = 880;
+	ground.h = 72;
+
+	//lower lowerBathtub
+
+	lowerBathtub.x = 308;
+	lowerBathtub.y = 333;
+	lowerBathtub.w = 348;
+	lowerBathtub.h = 39;
+
+	//upper bathtub
+
+	upperBathtub.x = 308;
+	upperBathtub.y = 307;
+	upperBathtub.w = 348;
+	upperBathtub.h = 27;
+
+	//Background
+
+	background.x = 114;
+	background.y = 170;
+	background.w = 682;
+	background.h = 137;
+
+	//left wall
+
+	
+	leftWall.x = 116;
+	leftWall.y = 117;
+	leftWall.w = 108;
+	leftWall.h = 218;
+
+	//ceiling
+
+
+	ceiling.x = 87;
+	ceiling.y = 2;
+	ceiling.w = 789;
+	ceiling.h = 59;
+
+	//bucket
+
+	bucket.x = 224;
+	bucket.y = 312;
+	bucket.w = 48;
+	bucket.h = 40;
+
+	// Water from the bath
+
+	waterTub.frames.push_back({ 4, 445, 290, 19 });
+	waterTub.frames.push_back({ 292, 445, 290, 19 });
+	waterTub.frames.push_back({ 584, 445, 290, 19 });
+	waterTub.speed = 0.02f;
+
+
+	// mountain+sun from background
+
+	mountain.frames.push_back({ 220, 61, 231, 110 });
+	mountain.frames.push_back({ 452, 61, 231, 110 });
+	mountain.speed = 0.025f;
 
 }
 
@@ -26,14 +90,11 @@ bool ModuleSceneHonda::Start()
 
 	graphics = App->textures->Load("honda_stage.png");
 
-	// TODO 7: Enable the player module
+
 
 	App->player->Enable();
 
-	// TODO 0: trigger background music
 
-	App->audio->LoadFx("honda.ogg");
-	App->audio->PlayFx(1, 0);
 
 	return true;
 }
@@ -51,13 +112,43 @@ bool ModuleSceneHonda::CleanUp()
 
 update_status ModuleSceneHonda::Update()
 {
+	//Background
+
+	App->renderer->Blit(graphics, -20, 29, &background);
+
+	//Ground
+
+	App->renderer->Blit(graphics, -110, 160, &ground);
+
+	//animation from the mountain+sun
+
+	App->renderer->Blit(graphics, 174, 40, &(mountain.GetCurrentFrame()));
+
+	//leftWall
+
+	App->renderer->Blit(graphics, -20, -24, &leftWall);
+
+	//ceiling
+
+	App->renderer->Blit(graphics, -70, -19, &ceiling);
+
+	//Bucket
+
+	App->renderer->Blit(graphics, 70, 150, &bucket);
+
+	//lowerBathtub
+
+	App->renderer->Blit(graphics, 140, 150, &lowerBathtub);
+
+	//upperBathtub
+
+	App->renderer->Blit(graphics, 140, 132, &upperBathtub);
+
+	//water from the tub
+
+	App->renderer->Blit(graphics, 165, 145, &(waterTub.GetCurrentFrame()));
 
 
-	// TODO 10: Build an entire new scene "honda", you can find its
-	// and music in the Game/ folder
-
-	// TODO 11: Make that pressing space triggers a switch to honda logic module
-	// using FadeToBlack module
 
 	return UPDATE_CONTINUE;
 }

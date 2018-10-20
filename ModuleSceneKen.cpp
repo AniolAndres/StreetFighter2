@@ -65,9 +65,8 @@ bool ModuleSceneKen::Start()
 
 	// TODO 0: trigger background music
 
-	App->audio->LoadFx("ken.ogg");
-	App->audio->PlayFx(0, 0);
-	
+	App->audio->PlayMusic("ken.ogg");
+
 	return true;
 }
 

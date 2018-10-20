@@ -9,8 +9,8 @@
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 {
-	position.x = 100;
-	position.y = 216;
+	position.x = 150;
+	position.y = 120;
 
 	// idle animation (arcade sprite sheet)
 	idle.frames.push_back({7, 14, 60, 90});
@@ -71,11 +71,11 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	if(App->renderer->playerMovement==1)
-		App->renderer->Blit(graphics, 150, 100, (&idle.GetCurrentFrame()), 0.0f);
+		App->renderer->Blit(graphics, position.x, position.y, (&idle.GetCurrentFrame()), 0.0f);
 	else if(App->renderer->playerMovement==2)
-		App->renderer->Blit(graphics, 150, 75, (&forward.GetCurrentFrame()), 0.0f);
+		App->renderer->Blit(graphics, position.x, position.y-25, (&forward.GetCurrentFrame()), 0.0f);
 	else if(App->renderer->playerMovement==3)
-		App->renderer->Blit(graphics, 150, 100, (&backward.GetCurrentFrame()), 0.0f);
+		App->renderer->Blit(graphics, position.x, position.y, (&backward.GetCurrentFrame()), 0.0f);
 
 	// TODO 9: Draw the player with its animation
 	// make sure to detect player movement and change its

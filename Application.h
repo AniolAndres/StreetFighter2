@@ -13,6 +13,7 @@ class ModuleAudio;
 class ModuleFadeToBlack;
 class ModulePlayer;
 class ModuleSceneKen;
+class ModuleSceneHonda;
 
 class Application
 {
@@ -24,6 +25,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	bool swapDone = false;
 
 public:
 	ModuleRender* renderer;
@@ -34,6 +36,7 @@ public:
 	ModuleFadeToBlack* fade;
 	ModulePlayer* player;
 	ModuleSceneKen* scene_ken;
+	ModuleSceneHonda* scene_honda;
 
 private:
 

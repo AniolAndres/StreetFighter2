@@ -20,6 +20,15 @@ public:
 
 public:
 	SDL_Texture * graphics = nullptr;
+	SDL_Rect ground;
+	SDL_Rect lowerBathtub;
+	SDL_Rect upperBathtub;
+	SDL_Rect background;
+	SDL_Rect leftWall;
+	SDL_Rect ceiling;
+	SDL_Rect bucket;
+	Animation waterTub;
+	Animation mountain;
 };
 
 #endif // __MODULESCENEHONDA_H__

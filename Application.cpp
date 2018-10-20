@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneKen.h"
+#include "ModuleSceneHonda.h"
 #include "ModulePlayer.h"
 
 using namespace std;
@@ -21,7 +22,10 @@ Application::Application()
 	modules.push_back(audio = new ModuleAudio());
 
 	// Game Modules
+
 	modules.push_back(scene_ken = new ModuleSceneKen(false));
+	modules.push_back(scene_honda = new ModuleSceneHonda(false));
+
 	modules.push_back(player = new ModulePlayer(false));
 	modules.push_back(fade = new ModuleFadeToBlack());
 }
@@ -66,6 +70,15 @@ update_status Application::Update()
 	for(list<Module*>::iterator it = modules.begin(); it != modules.end() && ret == UPDATE_CONTINUE; ++it)
 		if((*it)->IsEnabled() == true) 
 			ret = (*it)->PostUpdate();
+
+	if (App->renderer->swapScene == true && swapDone == false)
+	{	
+		
+		fade->FadeToBlack(scene_honda, scene_ken, 3.0f); 
+		audio->PlayMusic("honda.ogg");
+		swapDone = true;
+	}
+
 
 	return ret;
 }

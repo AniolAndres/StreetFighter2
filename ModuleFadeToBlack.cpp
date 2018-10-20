@@ -71,6 +71,8 @@ void ModuleFadeToBlack::FadeToBlack(Module* module_on, Module* module_off, float
 	fading_in = (module_off != nullptr) ? true : false;
 	start_time = SDL_GetTicks();
 	total_time = (Uint32) (time  * 0.5f * 1000.0f);
+	
+
 
 	this->module_on = module_on;
 	this->module_off = module_off;
